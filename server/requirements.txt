@@ -1,0 +1,6 @@
+langchain
+fastapi
+pymupdf
+openai
+tiktoken
+faiss-cpu
