@@ -6,3 +6,4 @@ tiktoken
 faiss-cpu
 uvicorn
 python-dotenv
+python-multipart
