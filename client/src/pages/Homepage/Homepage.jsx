@@ -24,7 +24,7 @@ const Homepage = () => {
   }, [maxLength, response, query]);
 
   async function handleSubmit() {
-    if (question) {
+    if (!question) {
       toast.error("provide query");
       return;
     }
@@ -32,7 +32,7 @@ const Homepage = () => {
     try {
       setQuery((prevQueries) => [...prevQueries, question]);
 
-      const res = await axios.post("http://127.0.0.1:8000/query", {
+      const res = await axios.post("https://resume-reader.onrender.com/query", {
         query: question,
       });
       if (res.status === 200) {
@@ -56,7 +56,10 @@ const Homepage = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const response = await axios.post("http://127.0.0.1:8000/pdf", formData);
+      const response = await axios.post(
+        "https://resume-reader.onrender.com/pdf",
+        formData
+      );
     } catch (error) {
       console.log("error", error.message);
     } finally {

@@ -17,7 +17,10 @@ const Landingpage = () => {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      response = await axios.post("http://127.0.0.1:8000/pdf", formData);
+      response = await axios.post(
+        "https://resume-reader.onrender.com/pdf",
+        formData
+      );
     } catch (error) {
       toast.error(error.message);
     } finally {
