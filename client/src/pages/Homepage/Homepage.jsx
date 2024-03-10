@@ -13,6 +13,7 @@ const Homepage = () => {
   const maxLength = Math.max(query.length, response.length);
   const chatsRef = useRef(null);
 
+  // automatically scroll down the chats
   const scrollToBottom = () => {
     if (chatsRef?.current?.scrollHeight) {
       chatsRef.current.scrollTop = chatsRef?.current?.scrollHeight;
@@ -23,7 +24,9 @@ const Homepage = () => {
     scrollToBottom();
   }, [maxLength, response, query]);
 
+  //  function to send query and receive answers
   async function handleSubmit() {
+    // validation question should not be empty
     if (!question) {
       toast.error("provide query");
       return;
@@ -48,6 +51,7 @@ const Homepage = () => {
     }
   }
 
+  // function to change resume pdf
   async function changePdf(e) {
     try {
       setLoading1(true);
@@ -87,6 +91,7 @@ const Homepage = () => {
         </label>
       </div>
       <div className="page">
+        {/* display both response and chats in a chat style */}
         <div className="chats" ref={chatsRef}>
           {Array.from({ length: maxLength }).map((_, index) => (
             <div key={index} className="chat">
@@ -97,6 +102,8 @@ const Homepage = () => {
           {loading ? <Loader2 /> : null}
         </div>
       </div>
+
+      {/*stop user from entering question when the response is processing */}
       <div className="bottom" style={{ display: loading ? "none" : null }}>
         <div className="askquery">
           <input

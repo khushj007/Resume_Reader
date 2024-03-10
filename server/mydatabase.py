@@ -6,10 +6,14 @@ import certifi
 from pydantic import BaseModel
 from datetime import datetime
 
+
+
 class Database:
     def __init__(self):
         print("connecting to database")
         self.client = None
+    
+    # function to connect database
     def connect(self):
         uri = os.getenv("uri") 
         self.client = MongoClient(uri,tlsCAFile=certifi.where())
@@ -19,6 +23,7 @@ class Database:
             return True
         except Exception as e:
             print(str(e))
+    # function to insert value in database
     def insertone(self,data):
           try:
             self.client.resumedetails.details.insert_one(data)

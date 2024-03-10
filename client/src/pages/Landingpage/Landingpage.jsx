@@ -8,6 +8,8 @@ import "./Landing.css";
 const Landingpage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
+  //sending resume pdf to backend
   const handleChange = async (e) => {
     let response = "";
     setLoading(true);

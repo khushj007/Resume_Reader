@@ -8,6 +8,7 @@ from datetime import datetime
 
 app = FastAPI()
 
+# middle ware for cors
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  
@@ -17,10 +18,13 @@ app.add_middleware(
 )
 
 
-
+# configuring helpers functions
 helper = Helper()
 
+
 database = Database()
+
+# connecting database
 response  = database.connect()
 
 if response == True:
@@ -28,7 +32,7 @@ if response == True:
     def read_root():
         return {"Hello": "World"}
 
-
+    # receiving pdf
     @app.post("/pdf")
     async def get_pdf(file: UploadFile):
         pdf_content = file.file.read()
@@ -42,6 +46,7 @@ if response == True:
         helper.configModel()
         return {"response":"file loaded succesfully"}
 
+    # receiving query
     @app.post("/query")
     def get_response(query:dict):
         response = helper.Response(query["query"])
