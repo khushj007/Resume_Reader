@@ -66,7 +66,8 @@ const Homepage = () => {
     try {
       setLoading1(true);
       const selectedFile = e.target.files[0];
-      setFileName(e.target.files[0].name);
+      let filename = e.target.files[0].name;
+      setFileName(filename.slice(0, 17));
       setRq(["Ask me anything ?"]);
 
       const formData = new FormData();
